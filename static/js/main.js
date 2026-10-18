@@ -2,6 +2,8 @@
    GLOW BEAUTY - Main JavaScript
    ===================================================== */
 
+document.documentElement.classList.add('js');
+
 document.addEventListener('DOMContentLoaded', function () {
 
     // ---------- 1. Mobile menu toggle ----------

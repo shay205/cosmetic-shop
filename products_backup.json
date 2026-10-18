@@ -1,0 +1,516 @@
+[
+{
+  "model": "products.category",
+  "pk": 1,
+  "fields": {
+    "name": "Skincare",
+    "slug": "skincare",
+    "description": "",
+    "image": "",
+    "is_active": true
+  }
+},
+{
+  "model": "products.category",
+  "pk": 2,
+  "fields": {
+    "name": "Makeup",
+    "slug": "makeup",
+    "description": "",
+    "image": "",
+    "is_active": true
+  }
+},
+{
+  "model": "products.category",
+  "pk": 3,
+  "fields": {
+    "name": "Perfumes",
+    "slug": "perfumes",
+    "description": "",
+    "image": "",
+    "is_active": true
+  }
+},
+{
+  "model": "products.category",
+  "pk": 4,
+  "fields": {
+    "name": "Haircare",
+    "slug": "haircare",
+    "description": "",
+    "image": "",
+    "is_active": true
+  }
+},
+{
+  "model": "products.category",
+  "pk": 5,
+  "fields": {
+    "name": "Bodycare",
+    "slug": "bodycare",
+    "description": "",
+    "image": "",
+    "is_active": true
+  }
+},
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "name": "Rose Glow Face Serum",
+    "slug": "rose-glow-face-serum",
+    "description": "",
+    "price": "2450.00",
+    "image": "products/demo/skincare/rose-glow-face-serum.png",
+    "stock_quantity": 20,
+    "is_available": true,
+    "is_featured": true,
+    "created_at": "2026-10-17T16:04:46.600Z",
+    "updated_at": "2026-10-18T07:31:00.001Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "category": 2,
+    "name": "Velvet Matte Lipstick",
+    "slug": "velvet-matte-lipstick",
+    "description": "",
+    "price": "1200.00",
+    "image": "products/demo/makeup/velvet-matte-lipstick.png",
+    "stock_quantity": 35,
+    "is_available": true,
+    "is_featured": true,
+    "created_at": "2026-10-17T16:04:46.623Z",
+    "updated_at": "2026-10-18T07:31:00.225Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "category": 3,
+    "name": "Lavender Dreams Perfume",
+    "slug": "lavender-dreams-perfume",
+    "description": "",
+    "price": "4800.00",
+    "image": "products/demo/perfumes/lavender-dreams-perfume.png",
+    "stock_quantity": 10,
+    "is_available": true,
+    "is_featured": true,
+    "created_at": "2026-10-17T16:04:46.640Z",
+    "updated_at": "2026-10-18T07:31:00.496Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "category": 4,
+    "name": "Silk Repair Hair Oil",
+    "slug": "silk-repair-hair-oil",
+    "description": "",
+    "price": "1850.00",
+    "image": "products/demo/haircare/silk-repair-hair-oil.png",
+    "stock_quantity": 15,
+    "is_available": true,
+    "is_featured": true,
+    "created_at": "2026-10-17T16:04:46.657Z",
+    "updated_at": "2026-10-18T07:31:00.770Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "category": 2,
+    "name": "Rose Petal Lip Balm",
+    "slug": "rose-petal-lip-balm",
+    "description": "",
+    "price": "650.00",
+    "image": "products/demo/makeup/rose-petal-lip-balm.png",
+    "stock_quantity": 30,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-17T16:04:46.672Z",
+    "updated_at": "2026-10-18T09:43:14.992Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 6,
+  "fields": {
+    "category": 1,
+    "name": "Hydrating Facial Cleanser",
+    "slug": "hydrating-facial-cleanser",
+    "description": "A gentle facial cleanser designed to remove dirt, excess oil, and everyday impurities.",
+    "price": "650.00",
+    "image": "products/Neutrogena_Hydro_Boost_Hydrating_Gel_Cleanser___Hyaluronic_Acid_Face_Wash.jpeg",
+    "stock_quantity": 0,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-17T18:10:00.965Z",
+    "updated_at": "2026-10-17T18:10:00.965Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 7,
+  "fields": {
+    "category": 5,
+    "name": "Shea Butter Body Lotion",
+    "slug": "shea-butter-body-lotion",
+    "description": "",
+    "price": "1500.00",
+    "image": "products/demo/bodycare/shea-butter-body-lotion.png",
+    "stock_quantity": 18,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-18T07:30:59.706Z",
+    "updated_at": "2026-10-18T09:42:45.506Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 8,
+  "fields": {
+    "category": 3,
+    "name": "Lattafa Yara Pink Eau de Parfum",
+    "slug": "lattafa-yara-pink-eau-de-parfum",
+    "description": "A sweet, feminine fragrance with creamy vanilla, soft florals and fruity notes. Perfect for everyday wear, dates and special occasions.",
+    "price": "3000.00",
+    "image": "products/lattafa-yara-pink.jpg",
+    "stock_quantity": 0,
+    "is_available": true,
+    "is_featured": true,
+    "created_at": "2026-10-18T07:45:35.793Z",
+    "updated_at": "2026-10-18T07:45:35.793Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 9,
+  "fields": {
+    "category": 3,
+    "name": "Lattafa Khamrah Eau de Parfum",
+    "slug": "lattafa-khamrah-eau-de-parfum",
+    "description": "A warm, inviting fragrance with sweet gourmand accords, cinnamon, dates, and vanilla. Ideal for evening outings, cooler weather, and anyone who enjoys rich, long-lasting scents.",
+    "price": "4600.00",
+    "image": "products/perfume2.jpeg",
+    "stock_quantity": 0,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-18T08:35:06.113Z",
+    "updated_at": "2026-10-18T08:35:06.113Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 10,
+  "fields": {
+    "category": 3,
+    "name": "Carolina Herrera Good Girl Eau de Parfum",
+    "slug": "carolina-herrera-good-girl-eau-de-parfum",
+    "description": "A bold, glamorous fragrance blending sweet notes with rich florals and warm tonka bean. Designed for those who love an elegant scent that makes a statement.",
+    "price": "18500.00",
+    "image": "products/perf3.jpeg",
+    "stock_quantity": 0,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-18T08:37:43.391Z",
+    "updated_at": "2026-10-18T08:37:43.391Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 11,
+  "fields": {
+    "category": 3,
+    "name": "Lattafa Fakhar Rose Eau de Parfum",
+    "slug": "lattafa-fakhar-rose-eau-de-parfum",
+    "description": "An elegant feminine fragrance with floral accords and a soft, sophisticated finish. Suitable for daily wear, office days, celebrations and romantic evenings.",
+    "price": "3500.00",
+    "image": "products/per4.jpeg",
+    "stock_quantity": 0,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-18T08:50:18.967Z",
+    "updated_at": "2026-10-18T08:50:18.967Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 12,
+  "fields": {
+    "category": 1,
+    "name": "CeraVe Foaming Facial Cleanser",
+    "slug": "cerave-foaming-facial-cleanser",
+    "description": "A gentle foaming facial cleanser designed to remove excess oil, dirt and impurities without leaving the skin feeling stripped. Ideal for normal to oily skin.",
+    "price": "2500.00",
+    "image": "products/skin1.jpeg",
+    "stock_quantity": 0,
+    "is_available": false,
+    "is_featured": false,
+    "created_at": "2026-10-18T08:57:22.481Z",
+    "updated_at": "2026-10-18T08:57:22.482Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 13,
+  "fields": {
+    "category": 1,
+    "name": "The Ordinary Niacinamide 10% + Zinc 1% Serum",
+    "slug": "the-ordinary-niacinamide-10-zinc-1-serum",
+    "description": ": A lightweight facial serum formulated with niacinamide and zinc to help improve the appearance of uneven skin tone, visible pores and excess oil. Suitable for a simple daily skincare routine.",
+    "price": "1800.00",
+    "image": "products/skin2.jpeg",
+    "stock_quantity": 0,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-18T08:59:02.212Z",
+    "updated_at": "2026-10-18T08:59:02.212Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 14,
+  "fields": {
+    "category": 1,
+    "name": "NIVEA Sun UV Face Shine Control SPF 50",
+    "slug": "nivea-sun-uv-face-shine-control-spf-50",
+    "description": "A facial sunscreen designed to provide high sun protection while helping reduce unwanted shine. A useful addition to a daily skincare routine, especially for people who prefer a matte finish.",
+    "price": "1500.00",
+    "image": "products/skin3.jpeg",
+    "stock_quantity": 33,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-18T09:00:28.699Z",
+    "updated_at": "2026-10-18T09:42:24.447Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 15,
+  "fields": {
+    "category": 1,
+    "name": "Garnier Vitamin C Brightening Serum",
+    "slug": "garnier-vitamin-c-brightening-serum",
+    "description": ": A lightweight vitamin C serum designed to brighten the appearance of dull skin and improve the look of uneven skin tone. Apply as directed and use sunscreen during the day.",
+    "price": "1600.00",
+    "image": "products/skin4.jpeg",
+    "stock_quantity": 4,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-18T09:01:36.241Z",
+    "updated_at": "2026-10-18T09:41:48.552Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 17,
+  "fields": {
+    "category": 2,
+    "name": "Maybelline Lifter Gloss",
+    "slug": "maybelline-lifter-gloss",
+    "description": "A glossy lip product that gives lips a smooth, luminous finish. Perfect for everyday wear, soft glam looks, and adding shine over lipstick or wearing alone.",
+    "price": "1500.00",
+    "image": "products/make2.jpeg",
+    "stock_quantity": 10,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-18T09:11:11.025Z",
+    "updated_at": "2026-10-18T09:41:22.551Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 18,
+  "fields": {
+    "category": 2,
+    "name": "L.A. Girl Pro Conceal HD Concealer",
+    "slug": "la-girl-pro-conceal-hd-concealer",
+    "description": "A creamy concealer designed to help cover the appearance of blemishes and dark circles while creating a more even-looking complexion. Suitable for everyday makeup and full-glam looks.",
+    "price": "800.00",
+    "image": "products/make3.jpeg",
+    "stock_quantity": 23,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-18T09:12:09.188Z",
+    "updated_at": "2026-10-18T12:06:57.597Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 19,
+  "fields": {
+    "category": 2,
+    "name": "Maybelline Lash Sensational Mascara",
+    "slug": "maybelline-lash-sensational-mascara",
+    "description": "A mascara designed to define and separate lashes while adding volume for a fuller-looking effect. Ideal for enhancing the eyes in both natural and dramatic makeup looks.",
+    "price": "1400.00",
+    "image": "products/make4.jpeg",
+    "stock_quantity": 0,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-18T09:13:00.036Z",
+    "updated_at": "2026-10-18T09:13:00.036Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 20,
+  "fields": {
+    "category": 2,
+    "name": "Maybelline Fit Me Matte + Poreless Foundation",
+    "slug": "maybelline-fit-me-matte-poreless-foundation",
+    "description": "A lightweight liquid foundation designed to provide a natural matte finish while helping minimize the appearance of pores. Ideal for everyday makeup and normal to oily skin. Available in different shades to complement various skin tones.",
+    "price": "1800.00",
+    "image": "products/make1_nRrYZmS.jpeg",
+    "stock_quantity": 0,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-18T09:18:00.164Z",
+    "updated_at": "2026-10-18T09:18:00.164Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 21,
+  "fields": {
+    "category": 5,
+    "name": "Vaseline Intensive Care Cocoa Radiant Body Lotion",
+    "slug": "vaseline-intensive-care-cocoa-radiant-body-lotion",
+    "description": "A moisturizing body lotion formulated with cocoa butter to help soften dry skin and leave it feeling smooth. Ideal for everyday body care",
+    "price": "650.00",
+    "image": "products/body1.jpeg",
+    "stock_quantity": 35,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-18T09:23:23.171Z",
+    "updated_at": "2026-10-18T09:40:35.134Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 22,
+  "fields": {
+    "category": 5,
+    "name": "NIVEA Cocoa Butter Body Lotion",
+    "slug": "nivea-cocoa-butter-body-lotion",
+    "description": "A nourishing body lotion designed to moisturize dry skin while leaving a soft, smooth feel and a pleasant fragrance. Suitable for daily use.",
+    "price": "750.00",
+    "image": "products/body2.jpeg",
+    "stock_quantity": 10,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-18T09:24:31.537Z",
+    "updated_at": "2026-10-18T09:39:43.325Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 23,
+  "fields": {
+    "category": 5,
+    "name": "Dove Deeply Nourishing Beauty Bar",
+    "slug": "dove-deeply-nourishing-beauty-bar",
+    "description": "A gentle cleansing beauty bar designed to clean the skin while helping maintain its moisture. A simple addition to an everyday bathing routine.",
+    "price": "250.00",
+    "image": "products/body3.jpeg",
+    "stock_quantity": 2,
+    "is_available": true,
+    "is_featured": true,
+    "created_at": "2026-10-18T09:25:38.563Z",
+    "updated_at": "2026-10-18T09:39:26.990Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 24,
+  "fields": {
+    "category": 5,
+    "name": "Tree Hut Shea Sugar Scrub",
+    "slug": "tree-hut-shea-sugar-scrub",
+    "description": "An exfoliating body scrub designed to remove dead skin cells and leave the skin feeling smoother and softer. Use gently as directed for a refreshing body-care routine.",
+    "price": "2200.00",
+    "image": "products/body4.jpeg",
+    "stock_quantity": 4,
+    "is_available": true,
+    "is_featured": true,
+    "created_at": "2026-10-18T09:26:47.036Z",
+    "updated_at": "2026-10-18T09:39:09.929Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 25,
+  "fields": {
+    "category": 4,
+    "name": "Cantu Shea Butter Leave-In Conditioning Repair Cream",
+    "slug": "cantu-shea-butter-leave-in-conditioning-repair-cream",
+    "description": "A leave-in conditioning cream designed to moisturize hair, improve manageability and help reduce breakage associated with styling. Suitable for textured, curly and natural hair routines.",
+    "price": "1400.00",
+    "image": "products/hair1.jpeg",
+    "stock_quantity": 10,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-18T09:27:48.259Z",
+    "updated_at": "2026-10-18T09:38:55.615Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 26,
+  "fields": {
+    "category": 4,
+    "name": "Motions Daily Moisturizing Hair Lotion",
+    "slug": "motions-daily-moisturizing-hair-lotion",
+    "description": "A moisturizing hair lotion designed to soften hair, improve manageability and help reduce dryness. Suitable for everyday hair maintenance and styling.",
+    "price": "850.00",
+    "image": "products/hair2.jpeg",
+    "stock_quantity": 8,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-18T09:29:01.344Z",
+    "updated_at": "2026-10-18T09:38:39.658Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 27,
+  "fields": {
+    "category": 4,
+    "name": "ORS Olive Oil Replenishing Conditioner",
+    "slug": "ors-olive-oil-replenishing-conditioner",
+    "description": "A conditioning treatment formulated to soften hair and improve manageability. Ideal for hair-care routines focused on moisture and easier detangling.",
+    "price": "900.00",
+    "image": "products/hair3.jpeg",
+    "stock_quantity": 25,
+    "is_available": true,
+    "is_featured": true,
+    "created_at": "2026-10-18T09:30:07.245Z",
+    "updated_at": "2026-10-18T09:38:20.266Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 28,
+  "fields": {
+    "category": 4,
+    "name": "Eco Styler Olive Oil Styling Gel",
+    "slug": "eco-styler-olive-oil-styling-gel",
+    "description": "A styling gel designed to provide hold and definition for curls, twists, slick-back styles and other hairstyles. Suitable for creating polished looks.",
+    "price": "1000.00",
+    "image": "products/hair4.jpeg",
+    "stock_quantity": 5,
+    "is_available": true,
+    "is_featured": false,
+    "created_at": "2026-10-18T09:31:14.756Z",
+    "updated_at": "2026-10-18T09:37:33.770Z"
+  }
+}
+]
