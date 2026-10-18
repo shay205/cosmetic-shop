@@ -23,13 +23,32 @@ load_dotenv(BASE_DIR / '.env')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6e5yhfcajn%k&ah6fax54o*blz4)rxa=$@as*i9b30cjcb)cu5'
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
+if not SECRET_KEY and DEBUG:
+    SECRET_KEY = 'django-insecure-local-development-only-change-me'
+if not DEBUG and (
+    not SECRET_KEY or SECRET_KEY == 'django-insecure-local-development-only-change-me'
+    or SECRET_KEY.startswith('django-insecure-')
+):
+    raise ValueError(
+        'A real SECRET_KEY must be configured when DEBUG is False.'
+    )
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+    if host.strip()
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in os.environ.get('CSRF_TRUSTED_ORIGINS', '').split(',')
+    if origin.strip()
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 INSTALLED_APPS = [
@@ -49,7 +68,7 @@ INSTALLED_APPS = [
 
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware','whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -82,13 +101,25 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
+if DATABASE_URL:
+    import dj_database_url
+
+    DATABASES = {
+        'default': dj_database_url.parse(
+            DATABASE_URL,
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
@@ -124,11 +155,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STORAGES = {
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    },
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+    },
+}
+
 # Uploaded files (product and category photos added through the admin)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
