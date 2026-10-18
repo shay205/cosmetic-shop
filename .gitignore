@@ -1,3 +1,4 @@
+# Environment variables and secrets
 .env
 .env.*
 !.env.example
@@ -15,8 +16,3 @@ db.sqlite3
 
 # Django generated files
 staticfiles/
-
-# Environment and secret files
-.env
-.env.*
-!.env.example
