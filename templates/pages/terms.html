@@ -1,0 +1,25 @@
+{% extends 'pages/page_base.html' %}
+
+{% block page_title %}Terms of Service{% endblock %}
+{% block page_eyebrow %}Terms{% endblock %}
+{% block page_heading %}Terms of Service{% endblock %}
+{% block page_intro %}
+    <p>Please review the terms that apply when shopping with Glow Beauty.</p>
+{% endblock %}
+
+{% block page_content %}
+
+<p>
+    This page needs to be completed by the site owner before publication. Add accurate terms
+    for orders, pricing, delivery, payment, cancellations, returns, and customer support.
+    Do not publish this placeholder as a final legal policy.
+</p>
+
+<p>
+    Online payment is not currently available. Delivery charges are not calculated at checkout
+    and need to be confirmed with the customer. See the
+    <a href="{% url 'shipping' %}">Shipping &amp; Delivery</a> and
+    <a href="{% url 'returns' %}">Returns</a> pages for the current information.
+</p>
+
+{% endblock %}

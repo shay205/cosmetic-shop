@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}My Orders | Glow Beauty{% endblock %}
+
+{% block content %}
+
+<section class="section section--cream">
+    <div class="container">
+
+        <div class="section__head">
+            <span class="eyebrow">Your account</span>
+            <h2>My Orders</h2>
+            {% if orders %}
+                <p>Here's everything you've ordered while logged in.</p>
+            {% endif %}
+        </div>
+
+        {% if orders %}
+        <div class="order-list">
+            {% for order in orders %}
+            <article class="order-card reveal">
+
+                <div class="order-card__top">
+                    <div>
+                        <h3>{{ order.order_number }}</h3>
+                        <p class="order-card__date">Placed on {{ order.created_at|date:"j M Y" }}</p>
+                    </div>
+                    <span class="order-status order-status--{{ order.status }}">{{ order.get_status_display }}</span>
+                </div>
+
+                <p class="order-card__items">
+                    {% for item in order.items.all|slice:":3" %}{{ item.quantity }} &times; {{ item.product_name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% if order.items.all|length > 3 %} and {{ order.items.all|length|add:"-3" }} more{% endif %}
+                </p>
+
+                <div class="order-card__bottom">
+                    <strong class="price">KSh {{ order.total|floatformat:"-2g" }}</strong>
+                    <a href="{% url 'sales:order_detail' order.pk %}" class="btn btn--small">View order</a>
+                </div>
+
+            </article>
+            {% endfor %}
+        </div>
+
+        {% else %}
+        <div class="section__head">
+            <h3>No orders yet</h3>
+            <p>
+                Orders you place while logged in will appear here.
+                Orders placed as a guest aren't linked to an account.
+            </p>
+            <p><a href="{% url 'home' %}#featured" class="btn btn--primary">Start Shopping</a></p>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

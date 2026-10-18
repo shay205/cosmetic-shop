@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Glow Beauty | Premium Skincare, Makeup, Perfumes &amp; Haircare{% endblock %}
+
+{% block content %}
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+    <div class="container hero__inner">
+        <div class="hero__text">
+            <span class="eyebrow">New Season Collection</span>
+            <h1>Reveal your <em>natural</em> glow</h1>
+            <p>
+                Discover luxurious skincare, vibrant makeup, enchanting perfumes and
+                nourishing haircare, all made to help you feel confident and beautiful every day.
+            </p>
+            <div class="hero__buttons">
+                <a href="#featured" class="btn btn--primary">Shop Now</a>
+                <a href="#categories" class="btn btn--ghost">Explore Categories</a>
+            </div>
+            <ul class="hero__perks">
+                <li>✓ Free delivery over KSh 5,000</li>
+                <li>✓ 100% authentic</li>
+                <li>✓ Easy returns</li>
+            </ul>
+        </div>
+
+        <!-- Hero image -->
+        <div class="hero__visual">
+            <img src="{% static 'images/homepage.jpeg' %}"
+                 alt="Glow Beauty skincare and makeup collection"
+                 width="1024" height="1536" loading="eager">
+        </div>
+    </div>
+</section>
+
+<!-- ============ CATEGORIES ============ -->
+<section class="section" id="categories">
+    <div class="container">
+        <div class="section__head reveal">
+            <span class="eyebrow">Browse</span>
+            <h2>Shop by Category</h2>
+            <p>Find exactly what your beauty routine needs.</p>
+        </div>
+
+        <div class="category-grid">
+            {% for category in categories %}
+            <a href="{{ category.url }}" class="category-card {{ category.css_class }} reveal">
+                {% if category.image %}
+                <span class="category-card__photo-wrap"><img class="category-card__photo" src="{% static category.image %}" alt="" loading="lazy"></span>
+                {% else %}
+                <span class="category-card__icon">{{ category.icon }}</span>
+                {% endif %}
+                <h3>{{ category.name }}</h3>
+                <p>{{ category.tagline }}</p>
+                <span class="category-card__link">Shop {{ category.name }} →</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ============ FEATURED PRODUCTS ============ -->
+<section class="section section--cream" id="featured">
+    <div class="container">
+        <div class="section__head reveal">
+            <span class="eyebrow">Customer Favourites</span>
+            <h2>Featured Products</h2>
+            <p>Loved by our community, picked just for you.</p>
+        </div>
+
+        <div class="product-grid">
+            {% for product in featured_products %}
+            <article class="product-card reveal">
+                <a href="{{ product.url }}" class="product-card__image">
+                    {% if product.badge %}
+                        <span class="badge">{{ product.badge }}</span>
+                    {% endif %}
+
+                    {% if product.image %}
+                        <img src="{{ product.image }}" alt="{{ product.name }}" loading="lazy">
+                    {% else %}
+                        <!-- Placeholder shown until you add a real product photo -->
+                        <span class="product-card__placeholder">{{ product.icon }}</span>
+                    {% endif %}
+                </a>
+                <div class="product-card__body">
+                    <span class="product-card__category">{{ product.category }}</span>
+                    <h3><a href="{{ product.url }}">{{ product.name }}</a></h3>
+                    <div class="product-card__footer">
+                        <span class="price">KSh {{ product.price }}</span>
+                        <a href="{{ product.url }}" class="btn btn--small">View</a>
+                    </div>
+                </div>
+            </article>
+            {% empty %}
+            <p>No featured products yet. Check back soon!</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ============ PROMOTIONAL BANNER ============ -->
+<section class="promo">
+    <div class="container promo__inner reveal">
+        <div>
+            <span class="eyebrow eyebrow--light">Limited Time Offer</span>
+            <h2>Get 20% off your first order</h2>
+            <p>Use code <strong>GLOW20</strong> at checkout and treat yourself to something beautiful.</p>
+        </div>
+        <a href="#featured" class="btn btn--light">Claim Offer</a>
+    </div>
+</section>
+
+<!-- ============ WHY GLOW BEAUTY ============ -->
+<section class="section">
+    <div class="container">
+        <div class="features">
+            <div class="feature reveal">
+                <span class="feature__icon">🌿</span>
+                <h3>Gentle Ingredients</h3>
+                <p>Carefully selected formulas that care for every skin type.</p>
+            </div>
+            <div class="feature reveal">
+                <span class="feature__icon">🚚</span>
+                <h3>Fast Delivery</h3>
+                <p>Quick, reliable delivery right to your door.</p>
+            </div>
+            <div class="feature reveal">
+                <span class="feature__icon">💝</span>
+                <h3>Authentic Products</h3>
+                <p>Every item is genuine and quality-checked.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

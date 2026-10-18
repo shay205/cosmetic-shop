@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Cart | Glow Beauty{% endblock %}
+
+{% block content %}
+
+<section class="section section--cream">
+    <div class="container">
+
+        <div class="section__head">
+            <span class="eyebrow">Shopping</span>
+            <h2>Your Cart</h2>
+            {% if items %}
+                <p>{{ cart|length }} item{{ cart|length|pluralize }} in your cart.</p>
+            {% endif %}
+        </div>
+
+        {% if items %}
+        <div class="cart-layout">
+
+            <!-- Items -->
+            <div class="cart-items">
+                {% for item in items %}
+                <article class="cart-item">
+
+                    <a href="{% url 'products:detail' item.product.slug %}" class="cart-item__image">
+                        {% if item.product.image %}
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" loading="lazy">
+                        {% else %}
+                            <span aria-hidden="true">✨</span>
+                        {% endif %}
+                    </a>
+
+                    <div class="cart-item__info">
+                        <span class="product-card__category">{{ item.product.category.name }}</span>
+                        <h3><a href="{% url 'products:detail' item.product.slug %}">{{ item.product.name }}</a></h3>
+                        <p class="cart-item__price">KSh {{ item.product.price|floatformat:"-2g" }} each</p>
+
+                        {% if item.over_stock %}
+                            <p class="auth-error">Only {{ item.product.stock_quantity }} left in stock. Please lower the quantity.</p>
+                        {% endif %}
+
+                        <div class="cart-item__controls">
+                            <!-- Change quantity (set it to 0 to remove) -->
+                            <form method="post" action="{% url 'cart:update' item.product.id %}" class="cart-qty">
+                                {% csrf_token %}
+                                <label for="qty-{{ item.product.id }}" class="visually-hidden">Quantity for {{ item.product.name }}</label>
+                                <input type="number" name="quantity" id="qty-{{ item.product.id }}"
+                                       value="{{ item.quantity }}" min="0" max="{{ item.product.stock_quantity }}">
+                                <button type="submit" class="btn btn--small">Update</button>
+                            </form>
+
+                            <!-- Remove -->
+                            <form method="post" action="{% url 'cart:remove' item.product.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="cart-remove">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="cart-item__total">
+                        KSh {{ item.line_total|floatformat:"-2g" }}
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+
+            <!-- Summary -->
+            <aside class="cart-summary">
+                <h3>Order Summary</h3>
+                <div class="cart-summary__row">
+                    <span>Subtotal</span>
+                    <strong>KSh {{ total|floatformat:"-2g" }}</strong>
+                </div>
+                <p class="cart-summary__note">Payment is on delivery or by phone. We'll contact you to confirm your order.</p>
+
+                <a href="{% url 'sales:checkout' %}" class="btn btn--primary cart-summary__checkout">Proceed to Checkout</a>
+                <a href="{% url 'home' %}#featured" class="cart-summary__continue">&larr; Continue shopping</a>
+            </aside>
+
+        </div>
+
+        {% else %}
+        <!-- Empty cart -->
+        <div class="section__head">
+            <h3>Your cart is empty</h3>
+            <p>Looks like you haven't added anything yet. Have a look around and find something you love.</p>
+            <p><a href="{% url 'home' %}#featured" class="btn btn--primary">Start Shopping</a></p>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

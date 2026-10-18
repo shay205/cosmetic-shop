@@ -1,0 +1,61 @@
+{% extends 'pages/page_base.html' %}
+
+{% block page_title %}Shipping &amp; Delivery{% endblock %}
+{% block page_eyebrow %}Delivery{% endblock %}
+{% block page_heading %}Shipping &amp; Delivery{% endblock %}
+{% block page_intro %}
+    <p>How and when your Glow Beauty order reaches you.</p>
+{% endblock %}
+
+{% block page_content %}
+
+<h2>Where we deliver</h2>
+<p>
+    [PLACEHOLDER: List the towns, counties or countries you deliver to, and any areas you
+    don't cover yet.]
+</p>
+
+<h2>Delivery times</h2>
+<ul>
+    <li><strong>Within [PLACEHOLDER: your main town or city]:</strong> [PLACEHOLDER: for example, 1 to 2 working days]</li>
+    <li><strong>Other areas:</strong> [PLACEHOLDER: for example, 3 to 5 working days]</li>
+</ul>
+<p>
+    Delivery times are estimates, and they start once we have confirmed your order.
+    Delays can happen, for example during holidays or bad weather.
+</p>
+
+<h2>Delivery fees</h2>
+<p>
+    [PLACEHOLDER: Explain your delivery fees, for example a flat fee per area, and any
+    free-delivery threshold.]
+</p>
+<p>
+    <strong>Please note:</strong> your website does not add a delivery fee at checkout yet,
+    so the total customers see is only the price of the products. Until delivery fees are
+    built into checkout, either tell customers the fee when you call to confirm the order,
+    or add it to the order by hand.
+</p>
+
+<h2>How ordering works</h2>
+<ol>
+    <li>Place your order on our website and keep your order number (it looks like <strong>GB-000042</strong>).</li>
+    <li>We contact you on the phone number you gave us to confirm your order and delivery details.</li>
+    <li>We prepare and send your order.</li>
+    <li>You pay on delivery or by phone, as agreed when we confirm. Online payment isn't available yet.</li>
+</ol>
+
+<h2>Tracking your order</h2>
+<p>
+    If you ordered while logged in, open <strong>My orders</strong> in your account menu to see
+    your order's status: Pending, Confirmed, Shipped, Delivered or Cancelled. Questions about a
+    delivery? Quote your order number on our <a href="{% url 'contact' %}">Contact page</a>.
+</p>
+
+<h2>Problems with your delivery</h2>
+<p>
+    If your order arrives damaged or incorrect, please contact us as soon as possible. See our
+    <a href="{% url 'returns' %}">Returns</a> page for what happens next.
+</p>
+
+{% endblock %}

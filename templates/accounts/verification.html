@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Email verification | Glow Beauty{% endblock %}
+
+{% block content %}
+<section class="section auth-section">
+    <div class="container">
+        <div class="auth-card">
+            <div class="section__head">
+                {% if sent %}
+                    <h2>Check your email</h2>
+                    <p>We sent you a verification link. Open it to activate your account. Check your spam folder if it does not arrive.</p>
+                {% elif verified %}
+                    <h2>Email verified</h2>
+                    <p>Your account is active. You can now log in.</p>
+                    <a class="btn btn--primary auth-submit" href="{% url 'accounts:login' %}">Log in</a>
+                {% else %}
+                    <h2>Verification link invalid or expired</h2>
+                    <p>Please sign up again or contact us for help.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

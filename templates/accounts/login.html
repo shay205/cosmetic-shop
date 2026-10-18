@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Log in | Glow Beauty{% endblock %}
+
+{% block content %}
+
+<section class="section auth-section">
+    <div class="container">
+        <div class="auth-card">
+
+            <div class="section__head">
+                <span class="eyebrow">Welcome back</span>
+                <h2>Customer Login</h2>
+                <p>Log in to your Glow Beauty account.</p>
+            </div>
+
+            <form method="post" class="auth-form" novalidate>
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                <div class="auth-errors" role="alert">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="auth-field">
+                    <label for="{{ form.username.id_for_label }}">Username</label>
+                    <input type="text" name="username" id="{{ form.username.id_for_label }}"
+                           value="{{ form.username.value|default:'' }}"
+                           autocomplete="username" autofocus required>
+                </div>
+
+                <div class="auth-field">
+                    <label for="{{ form.password.id_for_label }}">Password</label>
+                    <input type="password" name="password" id="{{ form.password.id_for_label }}"
+                           autocomplete="current-password" required>
+                </div>
+
+                <!-- Sends the customer back to the page they came from, if any -->
+                <input type="hidden" name="next" value="{{ next }}">
+
+                <button type="submit" class="btn btn--primary auth-submit">Log In</button>
+            </form>
+
+            <div class="auth-links">
+                <p>New to Glow Beauty? <a href="{% url 'accounts:register' %}">Create an account</a></p>
+                <p><a href="{% url 'home' %}">&larr; Back to homepage</a></p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

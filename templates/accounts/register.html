@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Create an account | Glow Beauty{% endblock %}
+
+{% block content %}
+
+<section class="section auth-section">
+    <div class="container">
+        <div class="auth-card">
+
+            <div class="section__head">
+                <span class="eyebrow">Join Glow Beauty</span>
+                <h2>Create an Account</h2>
+                <p>Sign up to start shopping with us.</p>
+            </div>
+
+            <form method="post" class="auth-form" novalidate>
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                <div class="auth-errors" role="alert">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="auth-field">
+                    <label for="{{ form.first_name.id_for_label }}">First name</label>
+                    <input type="text" name="first_name" id="{{ form.first_name.id_for_label }}"
+                           value="{{ form.first_name.value|default:'' }}"
+                           autocomplete="given-name" autofocus required>
+                    {% for error in form.first_name.errors %}
+                        <p class="auth-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="auth-field">
+                    <label for="{{ form.email.id_for_label }}">Email address</label>
+                    <input type="email" name="email" id="{{ form.email.id_for_label }}"
+                           value="{{ form.email.value|default:'' }}"
+                           autocomplete="email" required>
+                    {% for error in form.email.errors %}
+                        <p class="auth-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="auth-field">
+                    <label for="{{ form.username.id_for_label }}">Username</label>
+                    <input type="text" name="username" id="{{ form.username.id_for_label }}"
+                           value="{{ form.username.value|default:'' }}"
+                           autocomplete="username" required>
+                    {% for error in form.username.errors %}
+                        <p class="auth-error">{{ error }}</p>
+                    {% endfor %}
+                    {% if form.username.help_text %}
+                        <small class="auth-help">{{ form.username.help_text }}</small>
+                    {% endif %}
+                </div>
+
+                <div class="auth-field">
+                    <label for="{{ form.password1.id_for_label }}">Password</label>
+                    <input type="password" name="password1" id="{{ form.password1.id_for_label }}"
+                           autocomplete="new-password" required>
+                    {% for error in form.password1.errors %}
+                        <p class="auth-error">{{ error }}</p>
+                    {% endfor %}
+                    {% if form.password1.help_text %}
+                        <div class="auth-help">{{ form.password1.help_text }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="auth-field">
+                    <label for="{{ form.password2.id_for_label }}">Confirm password</label>
+                    <input type="password" name="password2" id="{{ form.password2.id_for_label }}"
+                           autocomplete="new-password" required>
+                    {% for error in form.password2.errors %}
+                        <p class="auth-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <button type="submit" class="btn btn--primary auth-submit">Create Account</button>
+            </form>
+
+            <div class="auth-links">
+                <p>Already have an account? <a href="{% url 'accounts:login' %}">Log in</a></p>
+                <p><a href="{% url 'home' %}">&larr; Back to homepage</a></p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

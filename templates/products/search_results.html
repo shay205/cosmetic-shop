@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if query %}Search results for "{{ query }}"{% else %}Search{% endif %} | Glow Beauty{% endblock %}
+
+{% block content %}
+
+<section class="section section--cream">
+    <div class="container">
+
+        <div class="section__head">
+            <span class="eyebrow">Search</span>
+            {% if query %}
+                <h2>Results for "{{ query }}"</h2>
+                <p>{{ products|length }} product{{ products|length|pluralize }} found.</p>
+            {% else %}
+                <h2>Search our products</h2>
+                <p>Type a product name in the search bar to get started.</p>
+            {% endif %}
+        </div>
+
+        {% if query %}
+            {% if products %}
+            <div class="product-grid">
+                {% for product in products %}
+                <article class="product-card reveal">
+                    <a href="{% url 'products:detail' product.slug %}" class="product-card__image">
+                        {% if not product.in_stock %}
+                            <span class="badge">Out of stock</span>
+                        {% endif %}
+
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+                        {% else %}
+                            <span class="product-card__placeholder">✨</span>
+                        {% endif %}
+                    </a>
+                    <div class="product-card__body">
+                        <span class="product-card__category">{{ product.category.name }}</span>
+                        <h3><a href="{% url 'products:detail' product.slug %}">{{ product.name }}</a></h3>
+                        <div class="product-card__footer">
+                            <span class="price">KSh {{ product.price|floatformat:"-2g" }}</span>
+                            <a href="{% url 'products:detail' product.slug %}" class="btn btn--small">View</a>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="section__head">
+                <h3>No products found</h3>
+                <p>
+                    We couldn't find anything matching "{{ query }}".
+                    Check the spelling, try a shorter word (for example "rose" instead of
+                    "rose serum"), or browse our categories instead.
+                </p>
+                <p><a href="{% url 'home' %}#categories" class="btn btn--primary">Browse Categories</a></p>
+            </div>
+            {% endif %}
+        {% else %}
+            <div class="section__head">
+                <p><a href="{% url 'home' %}" class="btn btn--primary">Back to Homepage</a></p>
+            </div>
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

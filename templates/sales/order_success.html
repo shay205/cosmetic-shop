@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Order {{ order.order_number }} received | Glow Beauty{% endblock %}
+
+{% block content %}
+
+<section class="section auth-section">
+    <div class="container">
+        <div class="auth-card order-success">
+
+            <div class="order-success__icon" aria-hidden="true">✓</div>
+
+            <div class="section__head">
+                <span class="eyebrow">Thank you, {{ order.full_name }}</span>
+                <h2>We've received your order</h2>
+                <p>
+                    Your order number is <strong>{{ order.order_number }}</strong>.
+                    Keep it handy if you contact us about your delivery.
+                </p>
+            </div>
+
+            <ul class="checkout-lines">
+                {% for item in order.items.all %}
+                <li>
+                    <span>{{ item.quantity }} &times; {{ item.product_name }}</span>
+                    <strong>KSh {{ item.line_total|floatformat:"-2g" }}</strong>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <div class="cart-summary__row">
+                <span>Total</span>
+                <strong>KSh {{ order.total|floatformat:"-2g" }}</strong>
+            </div>
+
+            <div class="order-success__details">
+                <h3>Delivering to</h3>
+                <p>
+                    {{ order.full_name }}<br>
+                    {{ order.address }}, {{ order.city }}<br>
+                    {{ order.phone }}
+                </p>
+                <p class="cart-summary__note">
+                    <strong>Status:</strong> {{ order.get_status_display }}.
+                    {% if payment %}
+                        <span id="paymentStatus"
+                              data-status-url="{% url 'sales:payment_status' order.pk %}"
+                              role="status" aria-live="polite">
+                            {% if payment.status == 'pending' %}
+                                M-Pesa prompt sent. Waiting for payment confirmation.
+                            {% elif payment.status == 'successful' %}
+                                Payment confirmed. Receipt: {{ payment.receipt_number }}.
+                            {% elif payment.status == 'cancelled' %}
+                                M-Pesa payment was cancelled.
+                            {% else %}
+                                M-Pesa payment failed. Please contact us for help.
+                            {% endif %}
+                        </span>
+                    {% else %}
+                        We'll contact you on the number above to confirm your order.
+                        You'll pay on delivery or by phone.
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="auth-links">
+                <p><a href="{% url 'home' %}" class="btn btn--primary">Continue shopping</a></p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

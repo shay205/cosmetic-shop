@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}{% block page_title %}Information{% endblock %} | Glow Beauty{% endblock %}
+
+{% block content %}
+
+<section class="section section--cream">
+    <div class="container">
+
+        <div class="section__head">
+            <span class="eyebrow">{% block page_eyebrow %}Glow Beauty{% endblock %}</span>
+            <h1 class="info-title">{% block page_heading %}{% endblock %}</h1>
+            {% block page_intro %}{% endblock %}
+        </div>
+
+        <div class="info-page">
+
+            <!-- Quick links to the other information pages -->
+            <nav class="info-nav" aria-label="Help and information">
+                <a href="{% url 'about' %}"    class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a>
+                <a href="{% url 'contact' %}"  class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
+                <a href="{% url 'shipping' %}" class="{% if request.resolver_match.url_name == 'shipping' %}active{% endif %}">Shipping</a>
+                <a href="{% url 'returns' %}"  class="{% if request.resolver_match.url_name == 'returns' %}active{% endif %}">Returns</a>
+                <a href="{% url 'faqs' %}"     class="{% if request.resolver_match.url_name == 'faqs' %}active{% endif %}">FAQs</a>
+                <a href="{% url 'privacy' %}"  class="{% if request.resolver_match.url_name == 'privacy' %}active{% endif %}">Privacy</a>
+                <a href="{% url 'terms' %}"    class="{% if request.resolver_match.url_name == 'terms' %}active{% endif %}">Terms</a>
+            </nav>
+
+            <article class="info-card">
+                {% block page_content %}{% endblock %}
+            </article>
+
+            <p class="info-back"><a href="{% url 'home' %}">&larr; Back to homepage</a></p>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

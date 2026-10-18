@@ -1,0 +1,109 @@
+{% extends 'pages/page_base.html' %}
+
+{% block page_title %}FAQs{% endblock %}
+{% block page_eyebrow %}Help{% endblock %}
+{% block page_heading %}Frequently Asked Questions{% endblock %}
+{% block page_intro %}
+    <p>Quick answers to the things customers ask most. Tap a question to open it.</p>
+{% endblock %}
+
+{% block page_content %}
+
+<h2>Ordering</h2>
+
+<details class="faq">
+    <summary>Do I need an account to order?</summary>
+    <p>
+        No. You can check out as a guest. If you create an account and order while logged in,
+        your orders appear under <strong>My orders</strong> in your account menu. Orders placed
+        as a guest aren't linked to an account.
+    </p>
+</details>
+
+<details class="faq">
+    <summary>How do I know my order went through?</summary>
+    <p>
+        After you click <strong>Place Order</strong>, you'll see a thank-you page with your order
+        number (it looks like <strong>GB-000042</strong>). Please keep it. We'll then contact you
+        on the phone number you gave us to confirm your order.
+    </p>
+</details>
+
+<details class="faq">
+    <summary>Can I change or cancel my order?</summary>
+    <p>
+        Contact us as soon as possible with your order number. We can usually help before the order
+        is shipped. See <a href="{% url 'returns' %}">Returns</a> for more.
+    </p>
+</details>
+
+<details class="faq">
+    <summary>Why can't I add more of an item to my cart?</summary>
+    <p>
+        The quantity in your cart can't go above what we have in stock. If an item is sold out,
+        it shows as out of stock and can't be added.
+    </p>
+</details>
+
+<h2>Payment</h2>
+
+<details class="faq">
+    <summary>How do I pay?</summary>
+    <p>
+        You pay on delivery or by phone, as agreed when we call to confirm your order.
+        Online payment isn't available yet.
+    </p>
+</details>
+
+<details class="faq">
+    <summary>Which payment methods do you accept?</summary>
+    <p>[PLACEHOLDER: for example cash on delivery, M-Pesa sent to a number, bank transfer.]</p>
+</details>
+
+<details class="faq">
+    <summary>Is there a discount code?</summary>
+    <p>[PLACEHOLDER: explain how discount codes work, or delete this question. Codes can't be entered at checkout yet.]</p>
+</details>
+
+<h2>Delivery</h2>
+
+<details class="faq">
+    <summary>Where do you deliver and how long does it take?</summary>
+    <p>See <a href="{% url 'shipping' %}">Shipping &amp; Delivery</a> for areas, times and fees.</p>
+</details>
+
+<details class="faq">
+    <summary>How can I check where my order is?</summary>
+    <p>
+        If you ordered while logged in, open <strong>My orders</strong> to see its status
+        (Pending, Confirmed, Shipped, Delivered or Cancelled). Otherwise, contact us with your order number.
+    </p>
+</details>
+
+<h2>Products</h2>
+
+<details class="faq">
+    <summary>Are your products authentic?</summary>
+    <p>[PLACEHOLDER: say how you source your products. Only make this promise if it's true.]</p>
+</details>
+
+<details class="faq">
+    <summary>I have sensitive skin or allergies. What should I do?</summary>
+    <p>
+        Always read the ingredient list on the product or packaging before use, and do a small patch
+        test first. If you have a known allergy or a skin condition, check with a doctor or
+        pharmacist before trying a new product.
+    </p>
+</details>
+
+<h2>Returns</h2>
+
+<details class="faq">
+    <summary>What if my order arrives damaged or wrong?</summary>
+    <p>Contact us as soon as you can with your order number. See <a href="{% url 'returns' %}">Returns</a> for the steps.</p>
+</details>
+
+<h2>Still need help?</h2>
+<p>Visit our <a href="{% url 'contact' %}">Contact page</a> and we'll get back to you.</p>
+
+{% endblock %}

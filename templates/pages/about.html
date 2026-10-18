@@ -1,0 +1,44 @@
+{% extends 'pages/page_base.html' %}
+
+{% block page_title %}About Us{% endblock %}
+{% block page_eyebrow %}Our story{% endblock %}
+{% block page_heading %}About Glow Beauty{% endblock %}
+{% block page_intro %}
+    <p>Beauty that feels as good as it looks.</p>
+{% endblock %}
+
+{% block page_content %}
+
+<h2>Who we are</h2>
+<p>
+    Glow Beauty is an online cosmetics shop offering skincare, makeup, perfumes and haircare,
+    chosen to help you feel confident and beautiful every day.
+</p>
+<p>
+    [PLACEHOLDER: Add your own story here. For example, when and why you started Glow Beauty,
+    where you are based, and what makes your shop different.]
+</p>
+
+<h2>What we offer</h2>
+<ul>
+    <li><strong>Skincare:</strong> products to care for your skin every day.</li>
+    <li><strong>Makeup:</strong> colour and finishing touches for every look.</li>
+    <li><strong>Perfumes:</strong> scents to match your style.</li>
+    <li><strong>Haircare:</strong> care for strong, shiny hair.</li>
+</ul>
+
+<h2>Our promise</h2>
+<p>
+    [PLACEHOLDER: Describe how you source your products and what customers can expect.
+    Only make claims you can stand behind, such as "100% authentic" or "gentle formulas",
+    because customers will rely on them.]
+</p>
+
+<h2>Get in touch</h2>
+<p>
+    Questions about an order or a product? Visit our <a href="{% url 'contact' %}">Contact page</a>
+    or read our <a href="{% url 'shipping' %}">delivery information</a> and
+    <a href="{% url 'returns' %}">returns policy</a>.
+</p>
+
+{% endblock %}

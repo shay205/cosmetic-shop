@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block meta_description %}Glow Beauty - premium skincare, makeup, perfumes and haircare.{% endblock %}">
+
+    <title>{% block title %}Glow Beauty | Premium Cosmetics{% endblock %}</title>
+
+    <!-- Google Fonts (falls back to system fonts if offline) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script defer src="{% static 'js/main.js' %}"></script>
+    {% block extra_css %}{% endblock %}
+
+    <!-- Lets CSS know JavaScript is available (used for scroll animations) -->
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+    <!-- ============ HEADER / NAVIGATION ============ -->
+    <header class="site-header" id="siteHeader">
+        <div class="container nav">
+
+            <!-- Logo -->
+            <a href="{% url 'home' %}" class="logo" aria-label="Glow Beauty home">
+                <svg class="logo__icon" viewBox="0 0 48 48" width="38" height="38" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#e8a0b4"/>
+                            <stop offset="100%" stop-color="#b7a3d9"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="24" cy="24" r="22" fill="url(#logoGrad)"/>
+                    <path d="M24 9 L27.5 20.5 L39 24 L27.5 27.5 L24 39 L20.5 27.5 L9 24 L20.5 20.5 Z" fill="#fff8f0"/>
+                </svg>
+                <span class="logo__text">Glow <em>Beauty</em></span>
+            </a>
+
+            <!-- Main menu -->
+            <nav class="nav-links" id="primaryNav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
+                    <li><a href="{% url 'products:category' 'skincare' %}">Skincare</a></li>
+                    <li><a href="{% url 'products:category' 'makeup' %}">Makeup</a></li>
+                    <li><a href="{% url 'products:category' 'perfumes' %}">Perfumes</a></li>
+                    <li><a href="{% url 'products:category' 'haircare' %}">Haircare</a></li>
+                    <li><a href="{% url 'products:category' 'bodycare' %}">Bodycare</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+
+            <!-- Search / Account / Cart icons -->
+            <div class="nav-actions">
+                <a href="{% url 'products:search' %}" class="icon-btn" id="searchToggle" aria-label="Search" aria-expanded="false" aria-controls="searchPanel">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                </a>
+
+                {% if user.is_authenticated %}
+                <!-- Logged in: avatar button that opens a small account menu -->
+                <div class="user-menu" id="userMenu">
+                    <button type="button" class="user-menu__toggle" id="userMenuToggle" aria-haspopup="true" aria-expanded="false" aria-controls="userMenuPanel">
+                        <span class="user-menu__avatar" aria-hidden="true">{{ user.first_name|default:user.username|slice:":1"|upper }}</span>
+                        <span class="user-menu__name">{{ user.first_name|default:user.username }}</span>
+                        <svg class="user-menu__chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+
+                    <div class="user-menu__panel" id="userMenuPanel">
+                        <div class="user-menu__header">
+                            <strong>Hi, {{ user.first_name|default:user.username }}!</strong>
+                            {% if user.email %}<small>{{ user.email }}</small>{% endif %}
+                        </div>
+                        <a href="{% url 'sales:orders' %}" class="user-menu__link">My orders</a>
+                        {% if user.is_staff %}
+                        <a href="{% url 'admin:index' %}" class="user-menu__link">Admin dashboard</a>
+                        {% endif %}
+                        <form method="post" action="{% url 'accounts:logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="user-menu__logout">Log out</button>
+                        </form>
+                    </div>
+                </div>
+                {% else %}
+                <!-- Logged out: the profile icon opens the login page, plus a Sign up button -->
+                <a href="{% url 'accounts:login' %}" class="icon-btn" aria-label="Log in">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+                </a>
+                <a href="{% url 'accounts:register' %}" class="btn btn--small nav-signup">Sign up</a>
+                {% endif %}
+
+                <!-- Cart: links to the cart page and shows how many items are in it -->
+                <a href="{% url 'cart:detail' %}" class="icon-btn cart-btn" aria-label="Shopping cart, {{ cart|length }} item{{ cart|length|pluralize }}">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+                    <span class="cart-count">{{ cart|length }}</span>
+                </a>
+            </div>
+
+            <!-- Hamburger button (phones/tablets) -->
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primaryNav">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+        <!-- Search bar (opens when the magnifier icon is clicked) -->
+        <div class="search-panel" id="searchPanel">
+            <div class="container">
+                <form action="{% url 'products:search' %}" method="get" class="search-form" role="search">
+                    <input type="search" name="q" id="searchInput" value="{{ query|default:'' }}" placeholder="Search products, e.g. Rose serum" aria-label="Search products" required>
+                    <button type="submit" class="btn btn--primary">Search</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============ NOTICES (e.g. "added to your cart") ============ -->
+    {% if messages %}
+    <div class="messages container" role="status" aria-live="polite">
+        {% for message in messages %}
+        <p class="message message--{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- ============ PAGE CONTENT ============ -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+
+            <div class="footer-col footer-brand">
+                <a href="{% url 'home' %}" class="logo logo--light">
+                    <span class="logo__text">Glow <em>Beauty</em></span>
+                </a>
+                <p>Premium cosmetics crafted to celebrate your natural radiance. Beauty that feels as good as it looks.</p>
+                <div class="socials">
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="Facebook">FB</a>
+                    <a href="#" aria-label="TikTok">TT</a>
+                    <a href="#" aria-label="WhatsApp">WA</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="{% url 'products:category' 'skincare' %}">Skincare</a></li>
+                    <li><a href="{% url 'products:category' 'makeup' %}">Makeup</a></li>
+                    <li><a href="{% url 'products:category' 'perfumes' %}">Perfumes</a></li>
+                    <li><a href="{% url 'products:category' 'haircare' %}">Haircare</a></li>
+                    <li><a href="{% url 'products:category' 'bodycare' %}">Bodycare</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Help</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping &amp; Delivery</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Join the Glow Club</h4>
+                <p>Get beauty tips and exclusive offers in your inbox.</p>
+                <form class="newsletter" id="newsletterForm" novalidate>
+                    <input type="email" id="newsletterEmail" placeholder="Your email address" aria-label="Email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p class="newsletter-msg" id="newsletterMsg" role="status"></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; {% now "Y" %} Glow Beauty. All rights reserved.</p>
+                <p><a href="#">Privacy Policy</a> &middot; <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

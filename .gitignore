@@ -1,0 +1,22 @@
+.env
+.env.*
+!.env.example
+
+# Python virtual environments
+venv/
+.venv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Local database
+db.sqlite3
+
+# Django generated files
+staticfiles/
+
+# Environment and secret files
+.env
+.env.*
+!.env.example

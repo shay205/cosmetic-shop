@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} | Glow Beauty{% endblock %}
+{% block meta_description %}{{ product.name }} - {{ product.category.name }} at Glow Beauty.{% endblock %}
+
+{% block content %}
+
+<section class="section section--cream">
+    <div class="container">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="{% url 'home' %}">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="{% url 'products:category' product.category.slug %}">{{ product.category.name }}</a>
+            <span aria-hidden="true">/</span>
+            <span>{{ product.name }}</span>
+        </nav>
+
+        <div class="product-detail">
+
+            <!-- Photo -->
+            <div class="product-detail__image">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% else %}
+                    <span class="product-detail__placeholder" aria-hidden="true">✨</span>
+                {% endif %}
+            </div>
+
+            <!-- Details -->
+            <div class="product-detail__info">
+                <a href="{% url 'products:category' product.category.slug %}" class="product-card__category">{{ product.category.name }}</a>
+                <h1>{{ product.name }}</h1>
+                <p class="product-detail__price">KSh {{ product.price|floatformat:"-2g" }}</p>
+
+                {% if product.in_stock %}
+                    <p class="stock stock--in">
+                        ✓ In stock{% if product.stock_quantity <= 5 %} &middot; only {{ product.stock_quantity }} left{% endif %}
+                    </p>
+                {% else %}
+                    <p class="stock stock--out">Out of stock</p>
+                {% endif %}
+
+                {% if product.description %}
+                    <div class="product-detail__description">
+                        {{ product.description|linebreaks }}
+                    </div>
+                {% endif %}
+
+                <div class="product-detail__actions">
+                    {% if product.in_stock %}
+                        <!-- Add to cart: a form that posts to the cart app -->
+                        <form method="post" action="{% url 'cart:add' product.id %}" class="cart-add-form">
+                            {% csrf_token %}
+                            <label for="quantity" class="visually-hidden">Quantity</label>
+                            <input type="number" name="quantity" id="quantity" value="1" min="1" max="{{ product.stock_quantity }}">
+                            <button type="submit" class="btn btn--primary">Add to Cart</button>
+                        </form>
+                    {% else %}
+                        <button type="button" class="btn btn--primary" disabled>Out of stock</button>
+                    {% endif %}
+                    <a href="{% url 'products:category' product.category.slug %}" class="btn btn--ghost">More {{ product.category.name }}</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related products -->
+        {% if related_products %}
+        <div class="related">
+            <div class="section__head">
+                <span class="eyebrow">Keep Exploring</span>
+                <h2>You May Also Like</h2>
+            </div>
+
+            <div class="product-grid">
+                {% for item in related_products %}
+                <article class="product-card reveal">
+                    <a href="{% url 'products:detail' item.slug %}" class="product-card__image">
+                        {% if not item.in_stock %}
+                            <span class="badge">Out of stock</span>
+                        {% endif %}
+
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}" loading="lazy">
+                        {% else %}
+                            <span class="product-card__placeholder">✨</span>
+                        {% endif %}
+                    </a>
+                    <div class="product-card__body">
+                        <span class="product-card__category">{{ item.category.name }}</span>
+                        <h3><a href="{% url 'products:detail' item.slug %}">{{ item.name }}</a></h3>
+                        <div class="product-card__footer">
+                            <span class="price">KSh {{ item.price|floatformat:"-2g" }}</span>
+                            <a href="{% url 'products:detail' item.slug %}" class="btn btn--small">View</a>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

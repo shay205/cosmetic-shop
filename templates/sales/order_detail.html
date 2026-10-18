@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Order {{ order.order_number }} | Glow Beauty{% endblock %}
+
+{% block content %}
+
+<section class="section section--cream">
+    <div class="container">
+
+        <div class="section__head">
+            <span class="eyebrow">Your account</span>
+            <h2>Order {{ order.order_number }}</h2>
+            <p>Placed on {{ order.created_at|date:"j M Y" }}</p>
+        </div>
+
+        <div class="order-list">
+            <article class="order-card">
+                <div class="order-card__top">
+                    <div>
+                        <h3>Order status</h3>
+                        <p class="order-card__date">Last updated {{ order.updated_at|date:"j M Y" }}</p>
+                    </div>
+                    <span class="order-status order-status--{{ order.status }}">{{ order.get_status_display }}</span>
+                </div>
+
+                <div class="order-detail__address">
+                    <strong>Delivering to</strong><br>
+                    {{ order.full_name }}<br>
+                    {{ order.address }}, {{ order.city }}<br>
+                    {{ order.phone }}<br>
+                    {{ order.email }}
+                    {% if order.notes %}
+                        <br><strong>Delivery notes:</strong> {{ order.notes }}
+                    {% endif %}
+                </div>
+            </article>
+
+            <div class="order-detail__items">
+                <h3>Items</h3>
+                <ul class="checkout-lines">
+                    {% for item in order.items.all %}
+                    <li>
+                        <span>
+                            {% if item.product %}
+                                <a href="{% url 'products:detail' item.product.slug %}">{{ item.product_name }}</a>
+                            {% else %}
+                                {{ item.product_name }}
+                            {% endif %}
+                            <small>{{ item.quantity }} &times; KSh {{ item.price|floatformat:"-2g" }}</small>
+                        </span>
+                        <strong>KSh {{ item.line_total|floatformat:"-2g" }}</strong>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="cart-summary__row">
+                    <span>Total</span>
+                    <strong>KSh {{ order.total|floatformat:"-2g" }}</strong>
+                </div>
+            </div>
+
+            <p class="cart-summary__note">
+                Payment is on delivery or by phone. We’ll contact you to confirm your order.
+            </p>
+            <p><a href="{% url 'sales:orders' %}" class="btn btn--ghost">&larr; Back to My Orders</a></p>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'pages/page_base.html' %}
+
+{% block page_title %}Contact Us{% endblock %}
+{% block page_eyebrow %}We'd love to hear from you{% endblock %}
+{% block page_heading %}Contact Us{% endblock %}
+{% block page_intro %}
+    <p>Questions about an order, a product or delivery? Reach us any of these ways.</p>
+{% endblock %}
+
+{% block page_content %}
+
+<h2>Customer care</h2>
+<ul>
+    <li><strong>Phone / WhatsApp:</strong> [PLACEHOLDER: your phone number]</li>
+    <li><strong>Email:</strong> [PLACEHOLDER: your email address]</li>
+    <li><strong>Opening hours:</strong> [PLACEHOLDER: for example, Monday to Saturday, 9am to 6pm]</li>
+</ul>
+
+<h2>Visit or find us</h2>
+<p>
+    [PLACEHOLDER: your shop or business address and town. If you only sell online and
+    don't take visitors, say so here.]
+</p>
+
+<h2>Before you get in touch</h2>
+<ul>
+    <li>
+        Asking about an order? Have your order number ready (it looks like <strong>GB-000042</strong>).
+        If you ordered while logged in, you can find it under <strong>My orders</strong> in your account menu.
+    </li>
+    <li>Questions about delivery times or fees? See <a href="{% url 'shipping' %}">Shipping &amp; Delivery</a>.</li>
+    <li>Want to send something back? See <a href="{% url 'returns' %}">Returns</a>.</li>
+    <li>Quick answers are in our <a href="{% url 'faqs' %}">FAQs</a>.</li>
+</ul>
+
+{% endblock %}

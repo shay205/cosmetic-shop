@@ -1,0 +1,58 @@
+{% extends 'pages/page_base.html' %}
+
+{% block page_title %}Returns{% endblock %}
+{% block page_eyebrow %}Returns{% endblock %}
+{% block page_heading %}Returns &amp; Refunds{% endblock %}
+{% block page_intro %}
+    <p>If something isn't right with your order, here is what you can do.</p>
+{% endblock %}
+
+{% block page_content %}
+
+<h2>Damaged, faulty or incorrect items</h2>
+<p>
+    If your order arrives damaged, faulty or not what you ordered, contact us within
+    [PLACEHOLDER: for example, 48 hours] of delivery. Tell us your order number
+    (it looks like <strong>GB-000042</strong>) and what is wrong, and include a clear photo
+    if you can. We will arrange [PLACEHOLDER: a replacement, a refund, or both options].
+</p>
+
+<h2>Changed your mind?</h2>
+<p>
+    [PLACEHOLDER: State whether you accept returns for change of mind, and the time limit,
+    for example 7 days from delivery.]
+</p>
+
+<h2>What we can't take back</h2>
+<p>
+    Cosmetics are personal-care products, so many shops cannot accept them back once opened,
+    used or tested, for hygiene reasons. [PLACEHOLDER: Decide your own rule and write it
+    here, for example "We can only accept unopened items in their original sealed packaging."]
+</p>
+
+<h2>How to return an item</h2>
+<ol>
+    <li>Contact us on our <a href="{% url 'contact' %}">Contact page</a> and quote your order number.</li>
+    <li>Tell us which item and why you are returning it.</li>
+    <li>We will confirm whether it can be returned and how to send it back.</li>
+    <li>[PLACEHOLDER: Explain who pays for return delivery and how refunds are paid, for example by phone payment or cash.]</li>
+</ol>
+
+<h2>Refund timing</h2>
+<p>
+    [PLACEHOLDER: How long refunds take once we receive and check the item.]
+</p>
+
+<h2>Cancelling an order</h2>
+<p>
+    To cancel an order before it is delivered, contact us as soon as possible with your order
+    number. Once an order is marked <strong>Shipped</strong> in <strong>My orders</strong>,
+    cancelling may no longer be possible.
+</p>
+
+<h2>Your legal rights</h2>
+<p>
+    Nothing on this page limits any rights you have under consumer protection law where you live.
+</p>
+
+{% endblock %}
